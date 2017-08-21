@@ -1,24 +1,38 @@
 <h1>{{title}}</h1>
-<h2>{{hero.name}} details!</h2>
-<div><label>id: </label>{{hero.id}}</div>
 
-<form #heroForm="ngForm">
-  <div class="form-group">
-    <label for="heroName">name: </label>
-    <input type="text"
-           class="form-control"
-           id="heroName"
-           required
-           name="heroName"
-           [(ngModel)]="hero.name"
-           placeholder="name"
-           #heroName="ngModel"/>
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+      (click)="onSelect(hero)"
+      [class.selected]="selectedHero && hero.id === selectedHero.id">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
 
-    <div [hidden]="heroName.valid || heroName.pristine"
-         class="alert alert-danger">
-      Name is required
+<div *ngIf="selectedHero">
+  <h2>Hero details</h2>
+  <div><label>id: </label>{{selectedHero.id}}</div>
+
+  <form #heroForm="ngForm" class="hero-form">
+    <div class="form-group">
+      <label for="heroName">name: </label>
+      <input type="text"
+             class="form-control"
+             id="heroName"
+             required
+             name="heroName"
+             [(ngModel)]="selectedHero.name"
+             placeholder="name"
+             #heroName="ngModel"/>
+
+      <div [hidden]="heroName.valid || heroName.pristine"
+           class="alert alert-danger hero-name-alert">
+        Name is required
+      </div>
     </div>
-  </div>
 
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+    <button type="submit" (click)="onNameEdit()" class="btn btn-success" [disabled]="!heroForm.form.valid">
+      Edit hero name
+    </button>
+  </form>
+</div>
