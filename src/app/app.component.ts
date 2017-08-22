@@ -1,9 +1,5 @@
 import {Component} from '@angular/core';
-
-export class Hero {
-  id: number;
-  name: string;
-}
+import {Hero} from './models/hero';
 
 const HEROES: Hero[] = [
   {id: 11, name: 'Mr. Nice'},
@@ -33,10 +29,10 @@ export class AppComponent {
     this.selectedHero = Object.assign({}, hero);
   }
 
-  onNameEdit(): void {
-    const heroRef = this.getHeroObjectById(this.selectedHero.id);
+  onNameEdit(editedHero: Hero): void {
+    const heroRef = this.getHeroObjectById(editedHero.id);
     if (heroRef) {
-      heroRef.name = this.selectedHero.name;
+      heroRef.name = editedHero.name;
     }
   }
 

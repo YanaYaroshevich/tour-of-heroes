@@ -1,0 +1,27 @@
+<div *ngIf="hero">
+  <h2>Hero details</h2>
+  <div><label>id: </label>{{hero.id}}</div>
+
+  <form #heroForm="ngForm" class="hero-form">
+    <div class="form-group">
+      <label for="heroName">name: </label>
+      <input type="text"
+             class="form-control"
+             id="heroName"
+             required
+             name="heroName"
+             [(ngModel)]="hero.name"
+             placeholder="name"
+             #heroName="ngModel"/>
+
+      <div [hidden]="heroName.valid || heroName.pristine"
+           class="alert alert-danger hero-name-alert">
+        Name is required
+      </div>
+    </div>
+
+    <button type="submit" (click)="emitSubmit()" class="btn btn-success" [disabled]="!heroForm.form.valid">
+      Edit hero name
+    </button>
+  </form>
+</div>
