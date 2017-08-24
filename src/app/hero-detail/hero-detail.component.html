@@ -1,5 +1,10 @@
+<h2>Hero details</h2>
+
+<div *ngIf="!hero">
+  Loading hero details...
+</div>
+
 <div *ngIf="hero">
-  <h2>Hero details</h2>
   <div><label>id: </label>{{hero.id}}</div>
 
   <form #heroForm="ngForm" class="hero-form">

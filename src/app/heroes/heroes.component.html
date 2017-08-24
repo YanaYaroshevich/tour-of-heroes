@@ -1,15 +1,16 @@
 <h2>My Heroes</h2>
-<ul class="heroes" *ngIf="heroes">
-  <li *ngFor="let hero of heroes"
-      (click)="onSelect(hero)"
-      [class.selected]="selectedHero && hero.id === selectedHero.id">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
-  </li>
-</ul>
 
 <div *ngIf="!heroes">
   Loading heroes...
 </div>
+
+<ul class="heroes" *ngIf="heroes">
+  <li *ngFor="let hero of heroes"
+      (click)="onSelect(hero)"
+      [class.selected]="selectedHero && hero.id === selectedHero.id">
+    <span class="id-badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
 
 <!--<hero-detail [hero]="selectedHero" (submitClicked)="onNameEdit($event)"></hero-detail>-->
 
